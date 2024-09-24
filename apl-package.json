@@ -19,5 +19,5 @@
   source: "APLSource",
   tags: "apache,parquet,inverted,table,net",
   userCommandScript: "",
-  version: "0.0.0",
+  version: "0.0.1",
 }
