@@ -3,16 +3,17 @@
 ⍝ ← ←→ (data) (header)
 ⍝      ⍵ :: simple char vec
 ⍝   data :: inverted table of simple vectors or matrices
-⍝ header :: is a nested vector of character vectors
+⍝ header :: nested vector of character vectors
 
 ⍝ === NOTE ===
 ⍝  currently reads a single inverted table from a single row group
 ⍝  parquet files may be more complex, design is required
 ⍝  for now users can use the following code as a translation template for the low-level API provided
 ⍝  https://github.com/aloneguid/parquet-dotnet
-
-     ⎕USING←Init ⍬
-     fs←File.OpenRead⊆⍵
+     ⎕USING←'',⍥⊆(_dotnet.⎕USING)   ⍝ _dotnet.⎕USING managed by Cider
+     file←System.IO.File.OpenRead⊆⍵
+     ct←System.Threading.CancellationToken 0
+     fs←System.IO.File.OpenRead⊆⍵
      ct←⎕NEW System.Threading.CancellationToken 0
      pr←Parquet.ParquetReader.CreateAsync fs ⎕NULL 0 ct
      reader←pr.Result
