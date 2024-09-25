@@ -1,0 +1,36 @@
+ r←MakeRelease publish;assets;cfg;cider;dist;file;from;home;nuget_config;parms;to;v;version
+⍝ Make a new release of ParquetDotNet
+ home←CiderConfig.HOME
+ cider←CiderConfig.CIDER
+
+⍝ Copy version from package config
+ version←⎕VR'Version'
+ v←1⎕JSON Version ⋄ ⎕FX'cfg←.*' 'r←cfg.version'⎕R''v⊢version
+ {}⎕SE.Link.Add'Version'
+
+⍝ Create distribution and assets folders if not exists
+ dist←cider.distributionFolder
+ 1 ⎕MKDIR dist
+ cfg←⎕SE.Tatin.ReadPackageConfigFile home
+ assets←home,'/',cfg.assets
+ 1 ⎕MKDIR assets
+
+⍝ Copy .NET project config to assets
+ nuget_config←'_nuget-dependencies.csproj'
+ from←home,'/',cider.dependencies.nuget,'/',nuget_config
+ to←assets,'/',nuget_config
+ to(⎕NCOPY ⎕OPT'IfExists' 'Replace')from
+⍝ Build package
+ parms←⎕SE.Tatin.CreateBuildParms CiderConfig.HOME
+ parms.targetPath←dist
+ file←⎕SE.Tatin.BuildPackage parms
+
+⍝ Publish to tatin server
+ :If publish
+     r←⎕SE.Tatin.PublishPackage file'[tatin-test]'
+ :Else
+     r←'Package built to ',file
+ :EndIf
+
+⍝ Restore dynamic Version function
+ ⎕FX version ⋄ {}⎕SE.Link.Add'Version'
