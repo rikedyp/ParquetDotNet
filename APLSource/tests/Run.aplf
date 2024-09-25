@@ -1,0 +1,11 @@
+ Run←{
+⍝ ⍵: debug
+⍝    0: only report results
+⍝    1: stop on error or failure
+⍝    2: stop before running each test
+     dbg←(2=⍵)/9 ⋄ _←dbg ⎕STOP'Test'
+     fns←⎕NL ¯3
+     tests←fns/⍨'Test_'∘(⊃⍷)¨fns
+     r←⍵∘Test¨tests
+     ⎕←tests Report r
+     shy←r}

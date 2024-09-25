@@ -1,4 +1,4 @@
  Init←{
-     ⎕USING⊢←NuGet.Using CiderConfig.(HOME,'/',CIDER.dependencies.nuget)
+     ⎕USING⊢←'',⍥⊆_dotnet.⎕USING
      0
  }

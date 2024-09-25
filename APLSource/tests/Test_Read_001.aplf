@@ -1,0 +1,6 @@
+ Test_Read_001←{
+⍝ Test whether data and header shapes match    
+     file←##.CiderConfig.HOME,'/tests/userdata1.parquet'
+     (data header)←##.Read file
+     data≡⍥⍴header
+ }

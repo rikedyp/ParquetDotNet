@@ -1,0 +1,25 @@
+ Test_Read_002←{
+⍝ Test read parquet data against a sample of expected data
+     file←##.CiderConfig.HOME,'/tests/userdata1.parquet'
+     (data header)←##.Read file
+
+     h←'registration_dttm' 'id' 'first_name' 'last_name' 'email' 'gender' 'ip_address' 'cc' 'country' 'birthdate' 'salary' 'title' 'comments'
+     h≢header:0
+
+     sample←⊂42402.330196759256 42402.71114583333 42402.04827546296
+     sample,←⊂1 2 3
+     sample,←⊂3 11⍴'Amanda     Albert     Evelyn     '
+     sample,←⊂3 10⍴'Jordan    Freeman   Morgan    '
+     sample,←⊂3 32⍴'ajordan0@com.com                afreeman1@is.gd                 emorgan2@altervista.org         '
+     sample,←⊂3 6⍴'FemaleMale  Female'
+     sample,←⊂3 15⍴'1.197.201.2    218.111.175.34 7.161.136.94   '
+     sample,←⊂3 19⍴'6759521864920116                      6767119071901597   '
+     sample,←⊂3 32⍴'Indonesia                       Canada                          Russia                          '
+     sample,←⊂3 27⍴'3/8/1971                   1/16/1968                  2/1/1960                   '
+     sample,←⊂49756.53 150280.17 144972.51
+     sample,←⊂3 36⍴'Internal Auditor                    Accountant IV                       Structural Engineer                 '
+     sample,←⊂3 217↑⍉⍪'1E+02'
+     sample≢3↑¨data:0
+
+     1
+ }
