@@ -6,6 +6,20 @@ In this tutorial, I will summarise the steps necessary to set up development and
 1. Install the Tatin client (already available in Dyalog from version 19.0 onwards)
 1. Install the Cider project manager
 
+From Dyalog version 19.0, these are both made available using the `]Activate` user command.
+
+Do
+
+```
+]Activate all
+```
+
+Restart APL and then do
+
+```
+]Ureset
+```
+
 ## Create the Cider project
 
 ## Create the Tatin package
@@ -22,3 +36,7 @@ This package depends on third party shared libraries. I have obtained these from
 When developing with **Cider**, the project's assets are relative to `ParquetDotNet.CiderConfig.HOME`.
 
 When a user has loaded `ParquetDotNet` from **Tatin**, the project's assets are relative to `(⊃⊃⎕CLASS ⎕THIS).##.TatinVars.GetFullPath2AssetsFolder`.
+
+For now, am able to keep the .csproj file describing .NET dependencies as an asset in the Tatin project and use Dyalog/NuGet to load it on the user's end. Deployment scenarios include: supplying .csproj file, supplying necessary DLLs only, supplying entire .NET runtime.
+
+Of course, if we provide DLLS from published then only runtime is needed by client. Otherwise, entire SDK required. Might be nice to offer both? But I'm not sure Tatin distinguishes assets in that way - might need options in LX?
