@@ -10,7 +10,8 @@
 ⍝  parquet files may be more complex, design is required
 ⍝  for now users can use the following code as a translation template for the low-level API provided
 ⍝  https://github.com/aloneguid/parquet-dotnet
-     ⎕USING←'',⍥⊆(_dotnet.⎕USING)   ⍝ _dotnet.⎕USING managed by Cider
+     0∊⍴⎕USING: ∇⍵⊣Init''
+⍝     ⎕USING←'',⍥⊆(_dotnet.⎕USING)   ⍝ _dotnet.⎕USING managed by Cider
      file←System.IO.File.OpenRead⊆⍵
      ct←System.Threading.CancellationToken 0
      fs←System.IO.File.OpenRead⊆⍵
