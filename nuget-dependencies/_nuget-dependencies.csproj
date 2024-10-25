@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">  <PropertyGroup>    <TargetFramework>net8.0</TargetFramework>    <RootNamespace>_nuget_dependencies</RootNamespace>    <ImplicitUsings>enable</ImplicitUsings>    <Nullable>enable</Nullable>    <LangVersion>Latest</LangVersion>  </PropertyGroup>  <ItemGroup>
+  <PackageReference Include="parquet.net" Version="4.25.0" />
+</ItemGroup></Project>
